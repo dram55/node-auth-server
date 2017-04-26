@@ -7,3 +7,6 @@ The code follows [this Udemy](https://www.udemy.com/react-redux-tutorial) tutori
 ## Run Server
 Run the server with nodemon: `npm run dev` 
 Run the server manually: `node server.js`
+
+## Technologies
+![technologies](/img/tech_stack.PNG?raw=true "Tech Stack")
