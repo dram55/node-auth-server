@@ -4,7 +4,7 @@ const secret = require('../config').secret;
 
 function createJwtFromUser(user) {
   const payload = {iss:"MyAuthenticationApp", sub:user.id};
-  const token = jwt.encode(payload, "HS512");
+  const token = jwt.encode(payload, secret, "HS256");
   return token;
 }
 
@@ -25,7 +25,7 @@ exports.signup = function(req, res, next) {
     const newUser = new User({name:name, email:email, password:password});
     newUser.save(function(err) {
       if (err) return (next(res.json(err)));
-      const token = createJwtFromUser(newUser) 
+      const token = createJwtFromUser(newUser);
       return res.send({token:token});
     });
   });
