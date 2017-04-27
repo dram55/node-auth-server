@@ -21,6 +21,14 @@ userSchema.pre('save', function(next){
   });
 }); 
 
+userSchema.methods.comparePassword = function(newPassword, callback){
+      // bcrypt compares password from request against salt+hashed password from our db.
+    bcrypt.compare(newPassword, this.password, function(err, isMatch) {
+      if (err) return callback(err);
+      callback(null, isMatch);
+    });
+}
+
 // Create a user Model class
 const User = mongoose.model('user', userSchema);
 

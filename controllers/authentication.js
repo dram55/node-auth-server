@@ -29,4 +29,11 @@ exports.signup = function(req, res, next) {
       return res.send({token:token});
     });
   });
-  }
+}
+
+exports.login = function(req, res, next) {
+  // We can expect the user to be on req from our localAuthentication strategy in passport.js
+  // Simply make a token with that user id and return.
+  const token = createJwtFromUser(req.user);
+  res.send({token:token});
+}
